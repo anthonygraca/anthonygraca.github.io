@@ -5,12 +5,16 @@ publishdir = "public"
 canonifyurls = true
 relativeURLS = false
 
-theme = ["github.com/theNewDynamic/gohugo-theme-ananke/v2"]
+
 title = "blog | Anthony Graca"
 languageCode = "en-us"
 summaryLength = 42
 
 copyright = "copyright info, like license, year, author name, e.t.c."
+
+[module]
+  [[module.imports]]
+    theme = ["github.com/theNewDynamic/gohugo-theme-ananke/v2"]
 
 [author]
 name = "Your Name"
