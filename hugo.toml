@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://anthonygraca.io/"
 contentdir = "content"
 publishdir = "public"
 
@@ -6,7 +6,7 @@ canonifyurls = true
 relativeURLS = false
 
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke/v2"]
-title = "My awesome blog"
+title = "blog | Anthony Graca"
 languageCode = "en-us"
 summaryLength = 42
 
@@ -25,3 +25,11 @@ useIcon = true
 [outputFormats.RSS]
 mediatype = "application/rss+xml"
 baseName = "feed"
+
+
+
+[markup]
+  defaultMarkdownHandler = 'goldmark'
+  [markup.goldmark.renderer]
+    unsafe = true
+
