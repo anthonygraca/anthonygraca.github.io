@@ -1,32 +1,93 @@
 baseurl = "https://anthonygraca.io/"
+
 contentdir = "content"
+layoutdir = "layouts"
 publishdir = "public"
 
 canonifyurls = true
 relativeURLS = false
 
-theme = ["github.com/theNewDynamic/gohugo-theme-ananke/v2"]
+enableEmoji = true
 
 title = "blog | Anthony Graca"
 languageCode = "en-us"
-summaryLength = 42
+disableFastRender = true
 
-copyright = "copyright info, like license, year, author name, e.t.c."
+pygmentsCodeFences = false       # This applies to Chroma too.
+pygmentsUseClasses = false      # This applies to Chroma too.
 
-[author]
-name = "Anthony Graca"
+[Author]
+  name = "Anthony Graca"
+  email = "anthonygraca@protonmail.com"
+  # bio = "A coder, a geek who likes playing with command-line tools. Uses Emacs."
+  # [Author.photo]
+  #   url = "images/me--optimized.jpg" # Path relative to baseURL
+  #   width = 400
+  #   height = 400
 
-[params]
-description = "Something about your blog"
-showFooterCredits = true
-math = false
-useIcon = true
+[Social]
+  github = "anthonygraca"
+  linkedin = "anthonygraca"
+
+[Params]
+  dateFormat = "Jan 2 2006"
+
+  description = "Something about your blog"
+
+  showFooterCredits = true
+  math = false
+  useIcon = true
+
+  showPageTitleInTOC = true
+  themecolorbase = "blue"
+
+  custom_inline_css = [ # Chroma GitHub theme
+                        "css/github_chroma.css"
+                        , "css/style.css"
+                      ]
+
+  css_lazy_load = false
+  mainSections = ["posts", "notes"]
+  feedSections = ["posts"]
+
+  html5_validator = true
+
+  # [Params.source]
+  #   url = "https://github.com/anthonygraca/anthonygraca.github.io"
+  #   org_dir = "content-org"
+  #   md_dir = "content"
+  #   ox_hugo = true
+
+  [Params.fontawesome]
+    style = "fal" # Valid values: "fas" (Solid), "far" (Regular), "fal" (Light), "fab" (Brands)
+
+  [Params.urls]
+    refined = "https://gitlab.com/kaushalmodi/hugo-theme-refined"
+    ox_hugo = "https://github.com/kaushalmodi/ox-hugo"
+    hugo = "https://github.com/gohugoio/hugo"
+
+  [Params.prefetch]
+    fonts = ["/fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff2",
+             "/fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2",
+             "/fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff2",
+             "/fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff2"]
+
+  [[Params.social.service]]
+      name = "Github"
+      link = "https://github.com/anthonygraca/"
+      relme = true
+  [[Params.social.service]]
+      name = "LinkedIn"
+      link = "https://https://www.linkedin.com/in/anthonygraca/"
+  [[Params.social.service]]
+      name = "Email"
+      link = "mailto:anthonygraca@protonmail.com"
+
 
 [outputFormats]
-[outputFormats.RSS]
-mediatype = "application/rss+xml"
-baseName = "feed"
-
+  [outputFormats.RSS]
+    mediatype = "application/rss+xml"
+    baseName = "feed"
 
 
 [markup]
@@ -34,3 +95,82 @@ baseName = "feed"
   [markup.goldmark.renderer]
     unsafe = true
 
+[Permalinks]
+  # https://gohugo.io/content-management/urls/#permalink-configuration-values
+  # | :year        | the 4-digit year                           |
+  # | :month       | the 2-digit month                          |
+  # | :monthname   | the name of the month                      |
+  # | :day         | the 2-digit day                            |
+  # | :weekday     | the 1-digit day of the week (Sunday = 0)   |
+  # | :weekdayname | the name of the day of the week            |
+  # | :yearday     | the 1- to 3-digit day of the year          |
+  # | :section     | the content's section                      |
+  # | :sections    | the content's sections hierarchy           |
+  # | :title       | the content's title                        |
+  # | :slug        | the content's slug (or title, if no slug)  |
+  # | :filename    | the content's filename (without extension) |
+
+  # Below, we have:
+  #
+  #   foo = "bar"
+  #
+  # where 'foo' is the section name which we want to have the custom
+  # permalinks. If foo is 'posts', it will apply to content in "content/posts/"
+  # dir. The "bar" portion is how you want the links to look.
+  posts = "/:filename/"
+  # post = "/:year/:month/:title/"
+  notes = "/notes/:filename/"
+
+[Taxonomies] # [indexes] is obsolete since v0.11
+  category = "categories" # SINGULAR = "PLURAL"
+  tag = "tags"
+  series = "series"
+
+# The "ATOM", "JF2Post" and "JF2Feed" are custom output formats defined in the
+# "refined" theme.
+[outputs]
+  home = ["HTML", "RSS", "ATOM", "JF2Feed"] # default = ["HTML", "RSS"]
+  section = ["HTML", "RSS", "ATOM", "JF2Feed"] # posts/atom.xml
+  taxonomy = ["HTML", "RSS", "ATOM", "JF2Feed"] # tags/foo/atom.xml
+  # Fri Mar 23 17:57:08 EDT 2018 - kmodi
+  # There's some issue on Hugo 0.38-DEV (older versions too)..  The "ATOM"
+  # output format is not getting generated for taxonomyTerm.
+  # taxonomyTerm = ["HTML", "RSS", "ATOM", "JF2Feed"]
+  page = ["HTML", "JF2Post"]
+
+# Configure minify - Hugo v0.68.0+
+# https://gohugo.io/getting-started/configuration/#configure-minify
+[minify]
+  # disableCSS = false                    # default = false
+  # disableHTML = false                   # default = false
+  # disableJS = false                     # default = false
+  # disableJSON = false                   # default = false
+  # disableSVG = false                    # default = false
+  # disableXML = false                    # default = false
+  minifyOutput = true                     # default = false
+  [minify.tdewolff]
+    # [minify.tdewolff.css]
+    #   keepCSS2 = true                   # default = true
+    #   precision = 0                     # default = 0
+    [minify.tdewolff.html]
+      # keepComments = false              # default = false
+      # keepConditionalComments = true    # default = true
+      # keepDefaultAttrVals = true        # default = true
+      # keepDocumentTags = true           # default = true
+      keepEndTags = false                 # default = true
+      # keepQuotes = false                # default = false
+      # keepWhitespace = true             # default = true
+    # [minify.tdewolff.js]
+    #   keepVarNames = false                # default = false
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.json]
+    #   keepNumbers = false                 # default = false
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.svg]
+    #   precision = 0                       # default = 0
+    # [minify.tdewolff.xml]
+    #   keepWhitespace = false              # default = false
+
+[module]
+  [[module.imports]]
+    path = "github.com/anthonygraca/hugo-theme-refined"
