@@ -16,6 +16,8 @@ disableFastRender = true
 pygmentsCodeFences = false       # This applies to Chroma too.
 pygmentsUseClasses = false      # This applies to Chroma too.
 
+refLinksErrorLevel = "Warning"
+
 [Author]
   name = "Anthony Graca"
   email = "anthonygraca@protonmail.com"
